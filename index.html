@@ -1,0 +1,2204 @@
+<!doctype html>
+<!--
+  SPDX-License-Identifier: CPAL-1.0
+
+  The contents of this file are subject to the Common Public Attribution
+  License Version 1.0 (the "License"); you may not use this file except in
+  compliance with the License. You may obtain a copy of the License at
+  https://opensource.org/licenses/CPAL-1.0 or in the LICENSE file
+  accompanying this software. The License is based on the Mozilla Public
+  License Version 1.1 but Sections 14 and 15 have been added to cover use of
+  software over a computer network and provide for limited attribution for
+  the Original Developer. In addition, Exhibit A has been modified to be
+  consistent with Exhibit B.
+
+  Software distributed under the License is distributed on an "AS IS" basis,
+  WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+  for the specific language governing rights and limitations under the License.
+
+  The Original Code is Kyodai Font Lab.
+  The Original Developer is the Initial Developer.
+  The Initial Developer of the Original Code is Kyodai Online Services LLC.
+  All portions of the code written by Kyodai Online Services LLC are
+  Copyright (c) 2026 Kyodai Online Services LLC. All Rights Reserved.
+
+  Attribution Information (Exhibit B):
+  Copyright (c) 2026 Kyodai Online Services LLC
+  Phrase: Powered by Kyodai Online Services
+  URL: https://kyodaiagency.com/
+  Graphic: assets/logo-kyodai-agency-white.png
+  (https://kyodaiagency.com/wp-content/uploads/2023/06/logo-kyodai-agency-white-350x100-1.png)
+
+  Fonts and other assets are the property of their respective owners.
+-->
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="light" name="color-scheme" />
+  <title>Kyodai Font Lab · Comparador tipográfico</title>
+  <link rel="license" href="LICENSE" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link rel="icon" type="image/png" href="https://kyodaiagency.com/wp-content/uploads/2023/06/favicon-white-512x512-1-300x300.png">
+  <style>
+    :root {
+      --primary: #3745A1;
+      --accent: #ED5B2D;
+      --ink: #142140;
+      --paper: #FBFFFE;
+      --line: #dce2ed;
+      --bodySize: 16px;
+      --headingSize: 39px;
+      --lineHeight: 1.55;
+      --sampleWidth: 470px;
+      --letterSpacing: 0px
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: #e9edf6;
+      color: #142140;
+      font: 14px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    button:focus-visible,
+    select:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #789eea;
+      outline-offset: 2px
+    }
+
+    .shell {
+      width: 100%;
+      max-width: none;
+      padding: 20px clamp(14px, 1.6vw, 30px) 48px;
+      margin: 0 auto
+    }
+
+    .mast {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: var(--primary);
+      font-weight: 800
+    }
+
+    .mast h1 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      margin: 7px 0 12px
+    }
+
+    .mast p {
+      max-width: 1050px;
+      color: #4d5870;
+      font-size: 15px;
+      line-height: 1.55;
+      margin: 0
+    }
+
+    .toolbar {
+      background: white;
+      border: 1px solid #d6deeb;
+      box-shadow: 0 4px 22px #1627440b;
+      padding: 17px 20px;
+      border-radius: 5px;
+      margin: 0;
+      display: grid;
+      gap: 16px
+    }
+
+    .tool {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 137px
+    }
+
+    .tool label {
+      font-size: 12px;
+      font-weight: 800;
+      color: #46516b
+    }
+
+    .tool input[type=range] {
+      width: 100%;
+      accent-color: var(--primary)
+    }
+
+    .toolControlRow {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center
+    }
+
+    .toolValueGroup {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px
+    }
+
+    .toolValueInput {
+      width: 62px;
+      height: 32px;
+      padding: 4px 6px;
+      border: 1px solid #bfc9df;
+      border-radius: 5px;
+      background: #fff;
+      color: var(--primary);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+      text-align: center
+    }
+
+    .toolValueGroup .toolValueInput {
+      width: 54px
+    }
+
+    .toolUnit {
+      color: #53617a;
+      font-size: 11px;
+      font-weight: 800
+    }
+
+    .utility {
+      border: 1px solid #ccd5e5;
+      background: #f7f8fc;
+      border-radius: 5px;
+      padding: 10px 12px;
+      font-weight: 750;
+      color: #253455
+    }
+
+    .utility:hover {
+      background: #eaedfb
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px
+    }
+
+    .panel {
+      background: #fff;
+      border: 1px solid #d3dce9;
+      border-radius: 5px;
+      min-width: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 25px #152a460a
+    }
+
+    .panelHeader {
+      padding: 20px;
+      border-bottom: 1px solid var(--line);
+      background: #fff
+    }
+
+    .panelTop {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 15px
+    }
+
+    .mark {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      background: var(--primary);
+      color: white;
+      font-size: 20px;
+      font-weight: 800;
+      border-radius: 5px
+    }
+
+    .panelTop h2 {
+      margin: 0;
+      font-size: 21px;
+      letter-spacing: -.025em
+    }
+
+    .panelTop p {
+      margin: 1px 0 0;
+      color: #63718a;
+      font-size: 12px
+    }
+
+    .selectors {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px
+    }
+
+    .picker {
+      min-width: 0
+    }
+
+    .picker label {
+      font-weight: 800;
+      font-size: 12px;
+      display: block;
+      margin: 0 0 5px
+    }
+
+    .picker select {
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #bfcbe0;
+      background: #fff;
+      padding: 10px 9px;
+      color: #182442
+    }
+
+    .custom {
+      display: none;
+      gap: 5px;
+      margin-top: 7px;
+      flex-wrap: wrap
+    }
+
+    .custom.visible {
+      display: flex
+    }
+
+    .custom input {
+      flex: 1;
+      min-width: 120px;
+      width: 100px;
+      padding: 9px;
+      border: 1px solid #bdc9df;
+      border-radius: 5px
+    }
+
+    .custom button {
+      border: 0;
+      border-radius: 5px;
+      padding: 9px 10px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800
+    }
+
+    .loadStatus {
+      font-size: 11px;
+      font-weight: 750;
+      margin-top: 7px;
+      min-height: 22px;
+      color: #5f6d82;
+      line-height: 1.3
+    }
+
+    .loadStatus.good {
+      color: #107143
+    }
+
+    .loadStatus.bad {
+      color: #b12d30
+    }
+
+    .loadStatus.loading {
+      color: #776000
+    }
+
+    .preview {
+      --headFont: "Space Grotesk", Arial, sans-serif;
+      --bodyFont: "Inter", Arial, sans-serif;
+      background: var(--paper);
+      font-family: var(--bodyFont);
+      color: var(--ink)
+    }
+
+    .siteNav {
+      padding: 19px 23px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: white;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .siteBrand {
+      font-family: var(--headFont);
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: -.04em
+    }
+
+    .siteLinks {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .siteHero {
+      padding: 38px 25px 34px;
+      min-height: 314px;
+      background: linear-gradient(112deg, #fbfffe 15%, #f2f4fb 90%)
+    }
+
+    .sectionEyebrow {
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 11px;
+      margin: 0 0 12px
+    }
+
+    .heroTitle {
+      font-family: var(--headFont);
+      font-weight: 700;
+      letter-spacing: -.045em;
+      line-height: 1.13;
+      font-size: var(--headingSize);
+      color: var(--ink);
+      margin: 0 0 16px;
+      max-width: 520px
+    }
+
+    .bodyCopy {
+      font-family: var(--bodyFont);
+      font-size: var(--bodySize);
+      line-height: var(--lineHeight);
+      font-weight: 400;
+      max-width: var(--sampleWidth);
+      color: var(--ink);
+      margin: 0 0 16px
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 17px;
+      flex-wrap: wrap
+    }
+
+    .cta {
+      background: var(--accent);
+      color: var(--paper);
+      border: 0;
+      border-radius: 5px;
+      padding: 11px 14px;
+      font-family: var(--bodyFont);
+      font-weight: 700
+    }
+
+    .ghost {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--ink);
+      border-radius: 5px;
+      padding: 10px 14px;
+      font-family: var(--bodyFont);
+      font-weight: 700
+    }
+
+    .textBlock {
+      border-top: 1px solid var(--line);
+      padding: 25px;
+      background: #fff
+    }
+
+    .textBlock h3,
+    .spec h3 {
+      font-family: var(--headFont);
+      font-size: 22px;
+      letter-spacing: -.035em;
+      line-height: 1.18;
+      margin: 0 0 14px
+    }
+
+    .tinyLabel {
+      font: 700 11px/1.4 system-ui, sans-serif;
+      color: #66738b;
+      margin: 0 0 13px
+    }
+
+    .paragraph {
+      font-family: var(--bodyFont);
+      font-size: var(--bodySize);
+      line-height: var(--lineHeight);
+      max-width: var(--sampleWidth);
+      margin: 0 0 14px
+    }
+
+    .paragraph:last-child {
+      margin-bottom: 0
+    }
+
+    .mini {
+      font-size: 13px;
+      line-height: 1.5
+    }
+
+    .figures {
+      font-size: var(--bodySize);
+      font-variant-numeric: tabular-nums
+    }
+
+    .spec {
+      padding: 21px 25px 26px;
+      background: #f0f3fa;
+      border-top: 1px solid var(--line)
+    }
+
+    .spec h3 {
+      font-size: 17px
+    }
+
+    .sizes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px
+    }
+
+    .sItem {
+      padding: 13px 10px;
+      background: #fff;
+      border: 1px solid #d8e0ec;
+      border-radius: 5px;
+      min-width: 0
+    }
+
+    .sItem strong {
+      display: block;
+      font: 800 12px system-ui, sans-serif;
+      margin-bottom: 7px
+    }
+
+    .sItem span {
+      font-family: var(--bodyFont);
+      line-height: 1.5;
+      display: block;
+      overflow-wrap: break-word
+    }
+
+    .size14 {
+      font-size: 14px
+    }
+
+    .size16 {
+      font-size: 16px
+    }
+
+    .size18 {
+      font-size: 18px
+    }
+
+    .foot {
+      border-radius: 5px;
+      border: 1px solid #d9e1ec;
+      background: #fff;
+      padding: 18px 20px;
+      color: #4b5670;
+      line-height: 1.65;
+      font-size: 13px;
+      margin-top: 20px
+    }
+
+    .foot strong {
+      color: #192b50
+    }
+
+    .editing {
+      background: #fff;
+      border-radius: 5px;
+      border: 1px solid #d6deeb;
+      padding: 16px 20px;
+      margin: 0 0 19px
+    }
+
+    .editing summary {
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 800
+    }
+
+    .editing p {
+      font-size: 12px;
+      color: #5c6982
+    }
+
+    .editgrid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px
+    }
+
+    .editgrid label {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 800
+    }
+
+    .editgrid input,
+    .editgrid textarea {
+      padding: 11px;
+      border: 1px solid #bfc9df;
+      border-radius: 5px;
+      resize: vertical;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 400
+    }
+
+    #editIntro {
+      min-height: 132px
+    }
+
+    #editLong {
+      min-height: 210px
+    }
+
+    #editSecond {
+      min-height: 180px
+    }
+
+    .editgrid .span2 {
+      grid-column: span 2
+    }
+
+    .controlSidebar .editing {
+      margin: 0
+    }
+
+    .controlSidebar .editgrid {
+      grid-template-columns: 1fr
+    }
+
+    .controlSidebar .editgrid .span2 {
+      grid-column: auto
+    }
+
+    .errorBanner {
+      margin-top: 12px;
+      padding: 12px 15px;
+      border-radius: 5px;
+      background: #fff2ed;
+      color: #992e1c;
+      border: 1px solid #edc8ba;
+      display: none
+    }
+
+    .errorBanner.visible {
+      display: block
+    }
+
+    @media(max-width:1060px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+
+      .shell {
+        padding: 21px 13px 45px
+      }
+
+    }
+
+    @media(max-width:510px) {
+
+      .toolbar {
+        grid-template-columns: 1fr
+      }
+
+      .selectors,
+      .editgrid {
+        grid-template-columns: 1fr
+      }
+
+      .editgrid .span2 {
+        grid-column: auto
+      }
+
+      .siteNav {
+        padding: 15px
+      }
+
+      .siteLinks {
+        gap: 6px;
+        font-size: 10px
+      }
+
+      .siteBrand {
+        font-size: 19px
+      }
+
+      .siteHero {
+        padding: 28px 18px
+      }
+
+      .heroTitle {
+        font-size: min(var(--headingSize), 32px)
+      }
+
+      .textBlock,
+      .spec {
+        padding: 19px
+      }
+
+      .sizes {
+        gap: 5px
+      }
+
+      .sItem {
+        padding: 10px 6px
+      }
+    }
+
+    /* v2 — ajustes y controles adicionales */
+    .panelHeader .panelTop {
+      margin-bottom: 17px
+    }
+
+    .panelTop h2 {
+      font-size: 22px
+    }
+
+    .weightField {
+      margin-top: 10px
+    }
+
+    .picker .weightField label {
+      font-size: 11px;
+      color: #53617a;
+      font-weight: 800;
+      margin-bottom: 5px
+    }
+
+    .syncChoice {
+      display: flex !important;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0 0 !important;
+      font-size: 12px !important;
+      font-weight: 750 !important;
+      color: #273964;
+      cursor: pointer;
+      line-height: 1.35
+    }
+
+    .syncChoice input {
+      width: 17px;
+      height: 17px;
+      flex: none;
+      accent-color: var(--primary)
+    }
+
+    .picker select:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      background: #f0f3f7
+    }
+
+    .picker .custom button:disabled,
+    .picker .custom input:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    .preview {
+      --headWeight: 700;
+      --bodyWeight: 400
+    }
+
+    .preview .siteBrand,
+    .preview .heroTitle,
+    .preview .textBlock h3,
+    .preview .spec h3 {
+      font-weight: var(--headWeight)
+    }
+
+    .preview .bodyCopy,
+    .preview .paragraph,
+    .preview .sItem span {
+      font-weight: var(--bodyWeight)
+    }
+
+    .preview .heroTitle {
+      overflow-wrap: break-word;
+      font-synthesis: none
+    }
+
+    .preview .siteBrand,
+    .preview .textBlock h3,
+    .preview .spec h3,
+    .preview .bodyCopy,
+    .preview .paragraph,
+    .preview .sItem span {
+      font-synthesis: none
+    }
+
+    .footerGuide {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: space-between;
+      flex-wrap: wrap
+    }
+
+    .footerGuide span {
+      max-width: 1050px
+    }
+
+    .cpalAttribution,
+    .cpalDialogCredit {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px 24px;
+      flex-wrap: wrap;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 5px;
+      border-bottom: 4px solid var(--accent);
+      padding: 12px 18px
+    }
+
+    .cpalAttribution {
+      margin-top: 14px
+    }
+
+    .cpalDialogCredit {
+      margin: 16px 0 0;
+      padding: 12px 14px
+    }
+
+    .cpalAttribution a,
+    .cpalAttribution a:hover,
+    .cpalAttribution a:focus,
+    .cpalAttribution a:visited,
+    .cpalDialogCredit a,
+    .cpalDialogCredit a:hover,
+    .cpalDialogCredit a:focus,
+    .cpalDialogCredit a:visited {
+      color: #fff;
+      text-decoration: none
+    }
+
+    .cpalBrandBlock {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      min-width: 0
+    }
+
+    .cpalBrand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      min-width: 0
+    }
+
+    .cpalBrand img {
+      display: block;
+      width: 148px;
+      height: auto;
+      max-width: 100%
+    }
+
+    .cpalDialogCredit .cpalBrand img {
+      width: 132px
+    }
+
+    .cpalPhrase {
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: .01em;
+      color: #fff
+    }
+
+    .cpalMeta,
+    .cpalAttribution .cpalMeta,
+    .cpalDialogCredit .cpalMeta,
+    .helpDialog .cpalMeta {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 700;
+      color: #fff
+    }
+
+    .cpalCredits,
+    .cpalAttribution .cpalCredits,
+    .cpalDialogCredit .cpalCredits,
+    .helpDialog .cpalCredits {
+      margin: 4px 0 0;
+      max-width: 46em;
+      font-size: 12px;
+      line-height: 1.4;
+      font-weight: 600;
+      color: #fff
+    }
+
+    .cpalLicense {
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap
+    }
+
+    .helpDialog {
+      width: min(670px, calc(100% - 28px));
+      max-height: min(95vh, 900px);
+      overflow: auto;
+      border: 1px solid #d8e0ed;
+      border-radius: 5px;
+      box-shadow: 0 25px 80px #0c153e55;
+      padding: 26px 29px 22px;
+      color: #142140;
+      background: #fff;
+      line-height: 1.55;
+      outline: none;
+    }
+
+    .helpDialog::backdrop {
+      background: #0e1a39a8;
+      backdrop-filter: blur(3px)
+    }
+
+    .dialogHead {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 20px
+    }
+
+    .dialogHead h2 {
+      font-size: 30px;
+      letter-spacing: -.04em;
+      margin: 7px 0
+    }
+
+    .helpDialog > p {
+      color: #495771
+    }
+
+    .helpDialog ol {
+      padding-left: 22px;
+      margin: 19px 0;
+      display: grid;
+      gap: 13px
+    }
+
+    .helpDialog li {
+      padding-left: 4px
+    }
+
+    .helpDialog .hint {
+      background: #f1f4fc;
+      border-left: 4px solid var(--primary);
+      padding: 12px 14px;
+      border-radius: 5px;
+      font-size: 12px
+    }
+
+    .dialogActions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px
+    }
+
+    .primaryBtn {
+      background: var(--primary);
+      color: white;
+      border: 0;
+      border-radius: 5px;
+      padding: 12px 18px;
+      font-weight: 800
+    }
+
+    .primaryBtn:hover {
+      filter: brightness(1.12)
+    }
+
+    @media(max-width:510px) {
+      .heroTitle {
+        font-size: var(--headingSize) !important;
+        overflow-wrap: break-word
+      }
+
+      .helpDialog {
+        padding: 20px 18px
+      }
+
+      .dialogHead {
+        flex-wrap: wrap
+      }
+    }
+
+    /* Branding Kyodai: mantener fondo gris y tarjetas blancas de la versión aportada. */
+    .brandBar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      flex-wrap: wrap;
+      background: var(--primary);
+      border-bottom: 4px solid var(--accent);
+      border-radius: 5px;
+      padding: 13px 24px;
+      margin-bottom: 25px;
+      min-height: 95px;
+      box-shadow: 0 7px 20px #152a4612
+    }
+
+    .brandLogo {
+      display: inline-flex;
+      align-items: center;
+      min-height: 55px;
+      max-width: 100%;
+      text-decoration: none
+    }
+
+    .brandLogo img {
+      display: block;
+      width: 205px;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain
+    }
+
+    .brandTag {
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: .12em;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .toolValueInput,
+    .syncChoice,
+    .foot strong {
+      color: var(--primary)
+    }
+
+    button:focus-visible,
+    select:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px
+    }
+
+    .utility:hover {
+      background: #eef0fc
+    }
+
+    /* El dialog puede desplazarse por dentro, pero la página de fondo queda inmóvil. */
+    html {
+      scrollbar-gutter: stable
+    }
+
+    html.help-open,
+    body.help-open {
+      overflow: hidden
+    }
+
+    @media(max-width:510px) {
+      .cpalBrand img,
+      .cpalDialogCredit img {
+        width: 120px
+      }
+
+      .brandBar {
+        padding: 14px 17px;
+        gap: 7px
+      }
+
+      .brandLogo img {
+        width: 165px
+      }
+
+      .brandTag {
+        font-size: 9px;
+        letter-spacing: .08em
+      }
+    }
+
+    /* Ocultar solamente la barra INTERNA del popup; conservar el scroll de sus instrucciones. */
+    .helpDialog {
+      scrollbar-width: none
+    }
+
+    .helpDialog::-webkit-scrollbar {
+      display: none
+    }
+
+    /* v6: enlaces en los dos ejemplos; color, subrayado y estado hover/foco visibles. */
+    .preview a.demoLink {
+      font-family: var(--bodyFont);
+      font-weight: var(--bodyWeight);
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      transition: color .15s ease, text-decoration-thickness .15s ease
+    }
+
+    .preview a.demoLink:hover,
+    .preview a.demoLink:focus-visible {
+      color: #BA3D18;
+      text-decoration-color: var(--accent);
+      text-decoration-thickness: 2px
+    }
+
+    .preview .siteLinks a.demoLink {
+      font-size: inherit;
+      font-weight: var(--bodyWeight);
+      text-decoration: none;
+      white-space: nowrap
+    }
+
+    .preview .siteLinks a.demoLink:hover,
+    .preview .siteLinks a.demoLink:focus-visible {
+      text-decoration: underline;
+      text-decoration-thickness: 2px
+    }
+
+    .preview .linkDemo {
+      margin-top: 3px;
+      margin-bottom: 12px
+    }
+
+    .preview .linkDemo a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px
+    }
+
+    /* v8 — interfaz de aplicación con barra lateral completa */
+    .shell {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      grid-template-areas:
+        "sidebar mast"
+        "sidebar content"
+        "sidebar error"
+        "sidebar footer";
+      grid-template-rows: auto 1fr auto auto;
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+      background: #e9edf6;
+      transition: grid-template-columns .24s ease
+    }
+
+    .shell.sidebar-collapsed {
+      grid-template-columns: 0 minmax(0, 1fr)
+    }
+
+    .labLayout {
+      display: contents
+    }
+
+    .controlSidebar {
+      grid-area: sidebar;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      align-self: start;
+      width: 330px;
+      height: 100vh;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      min-width: 0;
+      overflow-y: auto;
+      padding: 0 14px 24px;
+      background: var(--primary);
+      color: #fff;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      scrollbar-width: thin;
+      scrollbar-color: #ffffff80 transparent;
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+      transition: opacity .18s ease, visibility .18s ease, transform .24s ease
+    }
+
+    .sidebar-collapsed .controlSidebar {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateX(-100%)
+    }
+
+    .controlSidebar .brandBar {
+      flex: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 12px;
+      width: 100%;
+      min-height: 0;
+      margin: 0;
+      padding: 4px 4px 18px;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid #ffffff2b;
+      border-radius: 0;
+      box-shadow: none
+    }
+
+    .controlSidebar .brandLogo img {
+      width: 190px
+    }
+
+    .brandMeta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      width: 100%;
+      padding: 0
+    }
+
+    .brandServiceName {
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase
+    }
+
+    .controlSidebar .brandTag {
+      color: #fff;
+      font-size: 11px
+    }
+
+    .sidebarContent {
+      display: grid;
+      gap: 16px;
+      min-width: 0
+    }
+
+    .controlSidebar .toolbar,
+    .controlSidebar .editing {
+      border-color: #ffffff24;
+      box-shadow: 0 8px 24px #14214020
+    }
+
+    .controlSidebar .editing {
+      color: var(--ink)
+    }
+
+    .sidebarSectionTitle {
+      margin: 0 0 2px;
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.25;
+      letter-spacing: -.015em
+    }
+
+    .mast {
+      grid-area: mast;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      min-width: 0;
+      padding: 16px 24px 20px 60px;
+      background: #fff;
+      border-bottom: 1px solid #d6deeb
+    }
+
+    .mast>div {
+      flex: 1;
+      min-width: 0
+    }
+
+    .mast h1 {
+      font-size: clamp(30px, 3.2vw, 46px)
+    }
+
+    .sidebarToggle {
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      z-index: 2;
+      width: 34px;
+      min-width: 34px;
+      height: 34px;
+      min-height: 34px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0;
+      color: var(--primary);
+      background: #fff;
+      border: 1px solid #ccd5e5;
+      border-radius: 5px;
+      box-shadow: none
+    }
+
+    .sidebarToggle:hover {
+      background: #eef0fc;
+      border-color: #aebce0
+    }
+
+    .sidebarToggleIcon {
+      display: block;
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .sidebarToggleArrow {
+      transform-origin: center;
+      transition: transform .24s ease
+    }
+
+    .sidebar-collapsed .sidebarToggleArrow {
+      transform: scaleX(-1)
+    }
+
+    .comparisonArea {
+      grid-area: content;
+      min-width: 0;
+      padding: 24px 24px 4px
+    }
+
+    .errorBanner {
+      grid-area: error;
+      margin: 12px 24px 0
+    }
+
+    .foot {
+      grid-area: footer;
+      margin: 20px 24px 28px
+    }
+
+    .sidebarBackdrop {
+      display: none
+    }
+
+    @media(max-width:1180px) {
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:820px) {
+      .shell,
+      .shell.sidebar-collapsed {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+          "mast"
+          "content"
+          "error"
+          "footer"
+      }
+
+      .controlSidebar {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: min(330px, calc(100vw - 54px));
+        height: 100vh;
+        max-height: 100vh;
+        padding: 0 15px 24px;
+        z-index: 40
+      }
+
+      .sidebar-collapsed .controlSidebar {
+        transform: translateX(-100%)
+      }
+
+      .shell:not(.sidebar-collapsed) .sidebarBackdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 30;
+        padding: 0;
+        background: #0e1a397a;
+        border: 0;
+        border-radius: 0
+      }
+
+      .mast {
+        padding: 14px 16px 18px 54px
+      }
+
+      .sidebarToggle {
+        top: 8px;
+        left: 8px
+      }
+
+      .comparisonArea {
+        padding: 14px 12px 2px
+      }
+
+      .errorBanner {
+        margin-inline: 12px
+      }
+
+      .foot {
+        margin: 16px 12px 22px
+      }
+    }
+
+    body.sidebar-open-mobile {
+      overflow: hidden
+    }
+
+    /* v9 — controles tipográficos compactos */
+    .panelHeader {
+      padding: 14px 16px 12px
+    }
+
+    .panelHeader .panelTop {
+      margin-bottom: 10px
+    }
+
+    .panelTop {
+      gap: 10px
+    }
+
+    .mark {
+      width: 36px;
+      height: 36px;
+      font-size: 17px
+    }
+
+    .panelTop h2 {
+      font-size: 20px
+    }
+
+    .panelTop p {
+      font-size: 11px
+    }
+
+    .selectors {
+      gap: 12px
+    }
+
+    .picker {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 132px;
+      column-gap: 10px;
+      align-items: end
+    }
+
+    .picker>label {
+      grid-column: 1;
+      grid-row: 1
+    }
+
+    .picker>select {
+      grid-column: 1;
+      grid-row: 2;
+      min-height: 38px;
+      padding-block: 8px
+    }
+
+    .picker>.weightField {
+      grid-column: 2;
+      grid-row: 1 / 3;
+      margin-top: 0
+    }
+
+    .picker>.weightField select {
+      min-height: 38px;
+      padding-block: 8px
+    }
+
+    .picker>.custom {
+      grid-column: 1 / -1;
+      grid-row: 3
+    }
+
+    .picker>.syncChoice {
+      grid-column: 1 / -1;
+      grid-row: 4;
+      margin-top: 7px !important
+    }
+
+    .picker>.loadStatus {
+      grid-column: 1 / -1;
+      grid-row: 5;
+      min-height: 16px;
+      margin-top: 3px
+    }
+
+    /* v10 — foco discreto y cabeceras de comparación fijas */
+    button:focus-visible,
+    select:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    a:focus-visible {
+      outline: none;
+      outline-offset: 0;
+      box-shadow: none
+    }
+
+    select:focus-visible,
+    input:not([type=range]):not([type=checkbox]):focus-visible,
+    textarea:focus-visible {
+      border-color: #8997c9;
+      background-color: #f6f7ff
+    }
+
+    button:focus-visible {
+      border-color: #b7c2dc;
+      background-color: #eef0fc
+    }
+
+    input[type=range]:focus-visible,
+    input[type=checkbox]:focus-visible {
+      filter: brightness(.9) saturate(1.15)
+    }
+
+    a:focus-visible {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px
+    }
+
+    .panel {
+      overflow: visible
+    }
+
+    .panelHeader {
+      position: sticky;
+      top: 0;
+      z-index: 8;
+      box-shadow: 0 6px 14px #14214012
+    }
+
+    /* v11 — separación del configurador sticky y la muestra */
+    .panel {
+      background: transparent;
+      border: 0;
+      box-shadow: none
+    }
+
+    .panelHeader {
+      top: 0;
+      margin-bottom: 10px;
+      border: 1px solid #d3dce9;
+      border-radius: 5px
+    }
+
+    .panelHeader::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      bottom: -11px;
+      left: -1px;
+      height: 10px;
+      background: #e9edf6;
+      pointer-events: none
+    }
+
+    .preview {
+      overflow: hidden;
+      border: 1px solid #d3dce9;
+      border-radius: 5px
+    }
+
+    /* v12 — colapsador integrado en la barra lateral */
+    .shell.sidebar-collapsed {
+      grid-template-columns: 52px minmax(0, 1fr)
+    }
+
+    .mast {
+      padding-left: 24px
+    }
+
+    .controlSidebar {
+      transition: width .24s ease, padding .24s ease, transform .24s ease
+    }
+
+    .sidebarToggle {
+      flex: none
+    }
+
+    .sidebar-collapsed .controlSidebar {
+      width: 52px;
+      padding: 0 8px 8px;
+      overflow: hidden;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: none
+    }
+
+    .sidebar-collapsed .brandBar,
+    .sidebar-collapsed .sidebarContent {
+      display: none
+    }
+
+    @media(max-width:820px) {
+      .shell.sidebar-collapsed {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .sidebar-collapsed .controlSidebar {
+        width: 52px;
+        transform: none
+      }
+
+      .mast {
+        padding-left: 64px
+      }
+    }
+
+    /* v13 — control de espaciado tipográfico */
+    .preview * {
+      letter-spacing: var(--letterSpacing)
+    }
+
+    /* v14 — cabecera lateral fija y opaca */
+    .sidebarStickyHeader {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      flex: none;
+      width: 100%;
+      padding: 20px 0 18px;
+      background: var(--primary)
+    }
+
+    .sidebarToggle {
+      position: absolute;
+      top: 24px;
+      right: 4px;
+      left: auto;
+      z-index: 3;
+      margin: 0
+    }
+
+    .controlSidebar .brandBar {
+      position: static;
+      padding-right: 44px
+    }
+
+    .sidebar-collapsed .sidebarStickyHeader {
+      min-height: 50px;
+      padding: 8px 0 0
+    }
+
+    .sidebar-collapsed .sidebarToggle {
+      top: 8px;
+      right: auto;
+      left: 50%;
+      margin: 0;
+      transform: translateX(-50%)
+    }
+
+    @media(max-width:820px) {
+      .sidebarStickyHeader {
+        padding-top: 18px
+      }
+
+      .sidebarToggle {
+        top: 22px
+      }
+
+      .sidebar-collapsed .sidebarStickyHeader {
+        padding: 8px 0 0
+      }
+
+      .sidebar-collapsed .sidebarToggle {
+        top: 8px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="shell">
+    <header class="mast">
+      <div>
+        <h1>Font Lab — Comparador tipográfico</h1>
+        <p>Elige <strong>una fuente para titulares y otra para párrafos</strong> en cada columna; cambia pesos de manera independiente y, si lo prefieres, sincroniza la familia desde cualquiera de las columnas hacia la otra. Los mismos textos, tamaños, interlineado y anchura hacen que la comparación sea justa.</p>
+      </div>
+    </header>
+    <button class="sidebarBackdrop" id="sidebarBackdrop" type="button" aria-label="Cerrar opciones" aria-hidden="true"></button>
+    <div class="labLayout">
+      <aside class="controlSidebar" id="controlSidebar" aria-label="Controles de la comparación">
+        <div class="sidebarStickyHeader">
+          <button class="sidebarToggle" id="sidebarToggle" type="button" aria-controls="sidebarContent" aria-expanded="true" aria-label="Ocultar opciones" title="Ocultar opciones">
+            <svg class="sidebarToggleIcon" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <path d="M9 3v18"></path>
+              <path class="sidebarToggleArrow" d="m15 9-3 3 3 3"></path>
+            </svg>
+          </button>
+          <div class="brandBar" aria-label="Identidad de Kyodai Agency">
+            <a class="brandLogo" href="https://kyodaiagency.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar Kyodai Agency">
+              <img src="assets/logo-kyodai-agency-white.png" alt="Kyodai Agency" width="350" height="100" decoding="async" />
+            </a>
+            <div class="brandMeta">
+              <span class="brandServiceName">Kyodai Online Services</span>
+              <span class="brandTag">HERRAMIENTAS DE DISEÑO</span>
+            </div>
+          </div>
+        </div>
+        <div class="sidebarContent" id="sidebarContent">
+          <section aria-label="Ajustes compartidos" class="toolbar">
+          <h2 class="sidebarSectionTitle">Parámetros tipográficos</h2>
+          <div class="tool"><label for="headingSize">Titular (hasta 96 px)</label><div class="toolControlRow"><input id="headingSize" max="96" min="26" step="1" type="range" value="39" /><div class="toolValueGroup"><input aria-label="Tamaño de titulares en píxeles" class="toolValueInput" id="headingSizeOut" max="96" min="26" step="1" type="number" value="39" /><span class="toolUnit">px</span></div></div></div>
+          <div class="tool"><label for="bodySize">Párrafos</label><div class="toolControlRow"><input id="bodySize" max="20" min="12" step="1" type="range" value="16" /><div class="toolValueGroup"><input aria-label="Tamaño de párrafos en píxeles" class="toolValueInput" id="bodySizeOut" max="20" min="12" step="1" type="number" value="16" /><span class="toolUnit">px</span></div></div></div>
+          <div class="tool"><label for="sampleWidth">Ancho de texto</label><div class="toolControlRow"><input id="sampleWidth" max="570" min="240" step="10" type="range" value="470" /><div class="toolValueGroup"><input aria-label="Ancho del texto en píxeles" class="toolValueInput" id="sampleWidthOut" max="570" min="240" step="10" type="number" value="470" /><span class="toolUnit">px</span></div></div></div>
+          <div class="tool"><label for="lineHeight">Interlineado párrafo</label><div class="toolControlRow"><input id="lineHeight" max="1.85" min="1.3" step="0.05" type="range" value="1.55" /><div class="toolValueGroup"><input aria-label="Interlineado de párrafo" class="toolValueInput" id="lineHeightOut" inputmode="decimal" type="text" value="1.55" /><span class="toolUnit">px</span></div></div></div>
+          <div class="tool"><label for="letterSpacing">Separación entre caracteres</label><div class="toolControlRow"><input id="letterSpacing" max="4" min="-1" step="0.1" type="range" value="0" /><div class="toolValueGroup"><input aria-label="Separación entre caracteres en píxeles" class="toolValueInput" id="letterSpacingOut" max="4" min="-1" step="0.1" type="number" value="0" /><span class="toolUnit">px</span></div></div></div>
+          </section>
+          <details class="editing">
+            <summary>Cambiar textos de muestra (se actualizan en A y B)</summary>
+            <p>Utiliza un mismo contenido en ambas versiones. El texto de ejemplo es una maqueta editable, no copy final.</p>
+            <div class="editgrid"><label>Título del hero<input id="editHero" value="Haz brillar tu marca en internet." /></label><label>Nombre de marca / proyecto<input id="editBrand" value="Kyodai Agency" /></label><label class="span2">Párrafo principal<textarea id="editIntro" rows="2">Creamos sitios web y estrategias de marketing digital para ayudar a las marcas a destacar en internet.</textarea></label><label class="span2">Párrafo largo (prueba de lectura)<textarea id="editLong" rows="3">En Kyodai trabajamos con diseño y desarrollo web, marketing digital, posicionamiento SEO, gestión de redes sociales y diseño gráfico. Cada proyecto necesita una comunicación clara y una experiencia de lectura cómoda.</textarea></label><label class="span2">Segundo párrafo<textarea id="editSecond" rows="2">Una tipografía debe ser fácil de leer en descripciones de servicios, propuestas comerciales, formularios y textos largos, tanto en pantallas grandes como en dispositivos móviles.</textarea></label><label class="span2">Texto del enlace de muestra<input id="editLink" value="Explorar servicios" /></label></div>
+          </details>
+        </div>
+      </aside>
+      <div class="comparisonArea">
+        <div class="grid">
+      <article aria-label="Comparación A" class="panel" id="panel-a">
+        <div class="panelHeader">
+          <div class="panelTop">
+            <div class="mark">A</div>
+            <div>
+              <h2>Versión A</h2>
+              <p id="summary-a">Se cargan fuentes auténticas desde Google Fonts</p>
+            </div>
+          </div>
+          <div class="selectors">
+            <div class="picker"><label for="head-a">Fuente de titulares</label><select data-role="head" data-side="a" id="head-a"></select>
+              <div class="custom" id="custom-head-a"><input aria-label="Nombre de otra fuente Google Fonts para titular A" id="customInput-head-a" placeholder="Nombre en Google Fonts" /><button data-custom="head-a" type="button">Aplicar</button></div>
+              <div class="weightField"><label for="weight-head-a">Peso de titulares</label><select aria-label="Peso titulares versión A" data-role="head" data-side="a" id="weight-head-a"></select></div><label class="syncChoice" for="sync-head-a"><input id="sync-head-a" type="checkbox" /><span>Usar esta fuente también en B</span></label>
+              <div aria-live="polite" class="loadStatus loading" id="status-head-a">Comprobando…</div>
+            </div>
+            <div class="picker"><label for="body-a">Fuente de párrafos</label><select data-role="body" data-side="a" id="body-a"></select>
+              <div class="custom" id="custom-body-a"><input aria-label="Nombre de otra fuente Google Fonts para párrafos A" id="customInput-body-a" placeholder="Nombre en Google Fonts" /><button data-custom="body-a" type="button">Aplicar</button></div>
+              <div class="weightField"><label for="weight-body-a">Peso de párrafos</label><select aria-label="Peso párrafos versión A" data-role="body" data-side="a" id="weight-body-a"></select></div><label class="syncChoice" for="sync-body-a"><input id="sync-body-a" type="checkbox" /><span>Usar esta fuente también en B</span></label>
+              <div aria-live="polite" class="loadStatus loading" id="status-body-a">Comprobando…</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview" id="preview-a">
+          <div class="siteNav"><span class="siteBrand" data-text="brand">Kyodai Agency</span>
+        <nav class="siteLinks" aria-label="Navegación de muestra"><a class="demoLink" data-demo-link href="#">Servicios</a><a class="demoLink" data-demo-link href="#">Nosotros</a><a class="demoLink" data-demo-link href="#">Contacto</a></nav>
+          </div>
+          <section class="siteHero">
+            <p class="sectionEyebrow">Diseño web y marketing digital</p>
+            <h3 class="heroTitle" data-text="hero">Haz brillar tu marca en internet.</h3>
+            <p class="bodyCopy" data-text="intro">Creamos sitios web y estrategias de marketing digital para ayudar a las marcas a destacar en internet.</p>
+            <div class="actions"><button class="cta" type="button">Nuestros servicios →</button><button class="ghost" type="button">Hablemos</button></div>
+          </section>
+          <section class="textBlock">
+            <h3>Lectura en tamaños pequeños</h3>
+            <p class="tinyLabel">Mismo texto en A y B · peso ajustable · fondo idéntico</p>
+            <p class="paragraph" data-text="long">En Kyodai trabajamos con diseño y desarrollo web, marketing digital, posicionamiento SEO, gestión de redes sociales y diseño gráfico. Cada proyecto necesita una comunicación clara y una experiencia de lectura cómoda.</p>
+            <p class="paragraph" data-text="second">Una tipografía debe ser fácil de leer en descripciones de servicios, propuestas comerciales, formularios y textos largos, tanto en pantallas grandes como en dispositivos móviles.</p>
+        <p class="paragraph linkParagraph">Para conocer más sobre nuestro trabajo: <a class="demoLink" data-demo-link data-text="link" href="#">Explorar servicios</a>.</p>
+        <p class="paragraph linkDemo"><a class="demoLink" data-demo-link data-text="link" href="#">Explorar servicios</a> <span aria-hidden="true">→</span></p>
+            <p class="paragraph mini">Texto secundario: servicios, fechas, direcciones, referencias y datos de contacto deben seguir siendo legibles.</p>
+            <p class="paragraph figures">0123456789 · $1,250 · SEO / UX · 2026 · ÁÉÍÓÚ ñ ¿¡</p>
+          </section>
+          <section class="spec">
+            <h3>Tamaños de lectura fijos</h3>
+            <div class="sizes">
+              <div class="sItem"><strong>14 px</strong><span class="size14">Diseño web, marketing digital y posicionamiento SEO. Texto claro y legible.</span></div>
+              <div class="sItem"><strong>16 px</strong><span class="size16">Diseño web, marketing digital y posicionamiento SEO. Texto claro y legible.</span></div>
+              <div class="sItem"><strong>18 px</strong><span class="size18">Diseño web, marketing digital y posicionamiento SEO. Texto claro y legible.</span></div>
+            </div>
+          </section>
+        </div>
+      </article>
+      <article aria-label="Comparación B" class="panel" id="panel-b">
+        <div class="panelHeader">
+          <div class="panelTop">
+            <div class="mark">B</div>
+            <div>
+              <h2>Versión B</h2>
+              <p id="summary-b">Se cargan fuentes auténticas desde Google Fonts</p>
+            </div>
+          </div>
+          <div class="selectors">
+            <div class="picker"><label for="head-b">Fuente de titulares</label><select data-role="head" data-side="b" id="head-b"></select>
+              <div class="custom" id="custom-head-b"><input aria-label="Nombre de otra fuente Google Fonts para titular B" id="customInput-head-b" placeholder="Nombre en Google Fonts" /><button data-custom="head-b" type="button">Aplicar</button></div>
+              <div class="weightField"><label for="weight-head-b">Peso de titulares</label><select aria-label="Peso titulares versión B" data-role="head" data-side="b" id="weight-head-b"></select></div><label class="syncChoice" for="sync-head-b"><input id="sync-head-b" type="checkbox" /><span>Usar esta fuente también en A</span></label>
+              <div aria-live="polite" class="loadStatus loading" id="status-head-b">Comprobando…</div>
+            </div>
+            <div class="picker"><label for="body-b">Fuente de párrafos</label><select data-role="body" data-side="b" id="body-b"></select>
+              <div class="custom" id="custom-body-b"><input aria-label="Nombre de otra fuente Google Fonts para párrafos B" id="customInput-body-b" placeholder="Nombre en Google Fonts" /><button data-custom="body-b" type="button">Aplicar</button></div>
+              <div class="weightField"><label for="weight-body-b">Peso de párrafos</label><select aria-label="Peso párrafos versión B" data-role="body" data-side="b" id="weight-body-b"></select></div><label class="syncChoice" for="sync-body-b"><input id="sync-body-b" type="checkbox" /><span>Usar esta fuente también en A</span></label>
+              <div aria-live="polite" class="loadStatus loading" id="status-body-b">Comprobando…</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview" id="preview-b">
+          <div class="siteNav"><span class="siteBrand" data-text="brand">Kyodai Agency</span>
+        <nav class="siteLinks" aria-label="Navegación de muestra"><a class="demoLink" data-demo-link href="#">Servicios</a><a class="demoLink" data-demo-link href="#">Nosotros</a><a class="demoLink" data-demo-link href="#">Contacto</a></nav>
+          </div>
+          <section class="siteHero">
+            <p class="sectionEyebrow">Diseño web y marketing digital</p>
+            <h3 class="heroTitle" data-text="hero">Haz brillar tu marca en internet.</h3>
+            <p class="bodyCopy" data-text="intro">Creamos sitios web y estrategias de marketing digital para ayudar a las marcas a destacar en internet.</p>
+            <div class="actions"><button class="cta" type="button">Nuestros servicios →</button><button class="ghost" type="button">Hablemos</button></div>
+          </section>
+          <section class="textBlock">
+            <h3>Lectura en tamaños pequeños</h3>
+            <p class="tinyLabel">Mismo texto en A y B · peso ajustable · fondo idéntico</p>
+            <p class="paragraph" data-text="long">En Kyodai trabajamos con diseño y desarrollo web, marketing digital, posicionamiento SEO, gestión de redes sociales y diseño gráfico. Cada proyecto necesita una comunicación clara y una experiencia de lectura cómoda.</p>
+            <p class="paragraph" data-text="second">Una tipografía debe ser fácil de leer en descripciones de servicios, propuestas comerciales, formularios y textos largos, tanto en pantallas grandes como en dispositivos móviles.</p>
+        <p class="paragraph linkParagraph">Para conocer más sobre nuestro trabajo: <a class="demoLink" data-demo-link data-text="link" href="#">Explorar servicios</a>.</p>
+        <p class="paragraph linkDemo"><a class="demoLink" data-demo-link data-text="link" href="#">Explorar servicios</a> <span aria-hidden="true">→</span></p>
+            <p class="paragraph mini">Texto secundario: servicios, fechas, direcciones, referencias y datos de contacto deben seguir siendo legibles.</p>
+            <p class="paragraph figures">0123456789 · $1,250 · SEO / UX · 2026 · ÁÉÍÓÚ ñ ¿¡</p>
+          </section>
+          <section class="spec">
+            <h3>Tamaños de lectura fijos</h3>
+            <div class="sizes">
+              <div class="sItem"><strong>14 px</strong><span class="size14">Diseño web, marketing digital y posicionamiento SEO. Texto claro y legible.</span></div>
+              <div class="sItem"><strong>16 px</strong><span class="size16">Diseño web, marketing digital y posicionamiento SEO. Texto claro y legible.</span></div>
+              <div class="sItem"><strong>18 px</strong><span class="size18">Diseño web, marketing digital y posicionamiento SEO. Texto claro y legible.</span></div>
+            </div>
+          </section>
+        </div>
+      </article>
+        </div>
+      </div>
+    </div>
+    <div class="errorBanner" id="generalError" role="alert"></div>
+    <footer class="foot">
+      <div class="footerGuide"><span><strong>Cómo funciona:</strong> elige familias y pesos; puedes sincronizar las familias de A hacia B o de B hacia A, con una única dirección activa por tipo de texto. Si el estado indica «NO CARGADA», la muestra utiliza una sustituta y no es válida para esa combinación. Los enlaces de ambas muestras permiten comparar su estilo normal y hover; son enlaces de prueba y no navegan.</span><button class="utility" id="openHelp" type="button">Ver instrucciones</button></div>
+      <aside class="cpalAttribution" aria-label="Atribución de licencia CPAL-1.0">
+        <div class="cpalBrandBlock">
+          <a class="cpalBrand" href="https://kyodaiagency.com/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/logo-kyodai-agency-white.png" alt="Kyodai Agency" width="350" height="100" decoding="async" />
+            <span class="cpalPhrase">Powered by Kyodai Online Services</span>
+          </a>
+          <p class="cpalMeta">Copyright (c) 2026 Kyodai Online Services LLC</p>
+          <p class="cpalCredits">Las fuentes y otros activos son propiedad de sus respectivos dueños.</p>
+        </div>
+        <a class="cpalLicense" href="LICENSE.html" target="_blank" rel="noopener noreferrer license">Licencia CPAL-1.0</a>
+      </aside>
+    </footer>
+  </main>
+  <dialog aria-describedby="helpIntro" aria-labelledby="helpTitle" class="helpDialog" id="helpDialog" tabindex="-1">
+    <div class="dialogHead">
+      <div><span class="eyebrow">Kyodai Online Services · Guía rápida</span>
+        <h2 id="helpTitle">Cómo funciona</h2>
+      </div><button aria-label="Cerrar instrucciones" class="utility" id="closeHelp" type="button">✕ Cerrar</button>
+    </div>
+    <p id="helpIntro">Compara tipografías reales bajo las mismas condiciones, no imágenes generadas.</p>
+    <ol>
+      <li><strong>Elige fuentes y pesos:</strong> configura titulares y párrafos en cada columna, o escribe otra familia de Google Fonts. Si un peso no está disponible, verás una advertencia.</li>
+      <li><strong>Comparte una familia:</strong> activa «Usar esta fuente también en…» para copiarla y bloquear el selector receptor. Cambiar la dirección reemplaza la anterior; desmarcar libera el selector. Los pesos siguen siendo independientes.</li>
+      <li><strong>Ajusta parámetros:</strong> usa los deslizadores o escribe los valores para cambiar tamaños, interlineado, ancho y separación entre caracteres en ambas columnas. Los titulares admiten hasta 96 px.</li>
+      <li><strong>Edita la muestra:</strong> cambia el título, la marca, los párrafos y el enlace; ambas versiones se actualizan automáticamente.</li>
+      <li><strong>Explora la interfaz:</strong> usa el icono junto al logo para ocultar las opciones; en móviles también puedes tocar fuera o pulsar Escape. Usa el cursor o Tab para comparar los enlaces: no navegan.</li>
+      <li><strong>Verifica la carga:</strong> los estados verdes confirman cada fuente y peso. Ante «NO CARGADA», comprueba nombre, peso y conexión antes de evaluar la muestra.</li>
+    </ol>
+    <p class="hint">Los textos y colores son ejemplos; no definen una identidad visual de la marca.</p>
+    <aside class="cpalDialogCredit" aria-label="Atribución de licencia CPAL-1.0">
+      <div class="cpalBrandBlock">
+        <a class="cpalBrand" href="https://kyodaiagency.com/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/logo-kyodai-agency-white.png" alt="Kyodai Agency" width="350" height="100" decoding="async" />
+          <span class="cpalPhrase">Powered by Kyodai Online Services</span>
+        </a>
+        <p class="cpalMeta">Copyright (c) 2026 Kyodai Online Services LLC</p>
+        <p class="cpalCredits">Las fuentes y otros activos son propiedad de sus respectivos dueños.</p>
+      </div>
+      <a class="cpalLicense" href="LICENSE.html" target="_blank" rel="noopener noreferrer license">Licencia CPAL-1.0</a>
+    </aside>
+    <div class="dialogActions"><button class="primaryBtn" id="gotIt" type="button">Entendido, comenzar</button></div>
+  </dialog>
+  <script>
+    (() => {
+      'use strict';
+      const fontNames = ['Archivo', 'Barlow', 'Barlow Condensed', 'Barlow Semi Condensed', 'DM Sans', 'Figtree', 'IBM Plex Sans', 'Inter', 'Lato', 'Lexend', 'Manrope', 'Montserrat', 'Mulish', 'Noto Sans', 'Nunito Sans', 'Open Sans', 'Outfit', 'Plus Jakarta Sans', 'Poppins', 'Public Sans', 'Raleway', 'Roboto', 'Rubik', 'Sora', 'Source Sans 3', 'Source Sans Pro', 'Space Grotesk', 'Urbanist', 'Work Sans'];
+      const weights = [100, 200, 300, 400, 500, 600, 700, 800, 900];
+      const state = {
+        a: {
+          head: 'Space Grotesk',
+          body: 'Inter',
+          weights: {
+            head: 700,
+            body: 400
+          }
+        },
+        b: {
+          head: 'Space Grotesk',
+          body: 'Source Sans 3',
+          weights: {
+            head: 700,
+            body: 400
+          }
+        }
+      };
+      const synced = {
+        head: null,
+        body: null
+      }; // 'a', 'b' o null: fuente que controla cada familia
+      const cssLinkCache = new Map(),
+        requests = new Map();
+      const $ = id => document.getElementById(id);
+      const error = $('generalError');
+
+      function showError(message) {
+        error.textContent = message;
+        error.classList.add('visible');
+      }
+
+      function clearError() {
+        error.textContent = '';
+        error.classList.remove('visible');
+      }
+
+      function fontUrl(family, weight) {
+        return 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(family).replace(/%20/g, '+') + ':wght@' + weight + '&display=swap';
+      }
+
+      function loadCSS(family, weight) {
+        const key = family + '::' + weight;
+        if (cssLinkCache.has(key)) return cssLinkCache.get(key);
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = fontUrl(family, weight);
+          link.dataset.family = family;
+          link.dataset.weight = String(weight);
+          let settled = false;
+      const stop = window.setTimeout(() => {
+        if (!settled) {
+          settled = true;
+          link.remove();
+          reject(new Error('Tiempo agotado al consultar Google Fonts'));
+        }
+          }, 16000);
+          link.onload = () => {
+            if (!settled) {
+              settled = true;
+              clearTimeout(stop);
+              resolve();
+            }
+          };
+      link.onerror = () => {
+        if (!settled) {
+          settled = true;
+          clearTimeout(stop);
+          link.remove();
+          reject(new Error('La familia o ese peso no están disponibles, o no hay conexión'));
+        }
+          };
+          document.head.append(link);
+        });
+        cssLinkCache.set(key, promise);
+        promise.catch(() => cssLinkCache.delete(key));
+        return promise;
+      }
+      async function loadFace(family, weight) {
+        await loadCSS(family, weight);
+        if (!document.fonts || !document.fonts.load) throw new Error('El navegador no permite comprobar las fuentes');
+        const declaration = weight + ' 32px "' + family.replace(/"/g, '') + '"';
+        const matches = await document.fonts.load(declaration, 'Kyodai 0123456789 ÁÉÍÓÚ ñ');
+        const valid = matches.some(face => face.family.replace(/["']/g, '').toLowerCase() === family.toLowerCase() && face.status === 'loaded' && String(face.weight).split(' ').some(w => Number(w) === weight));
+        if (!valid) throw new Error('No se confirmó la familia con ese peso (podría ser una sustituta)');
+        return true;
+      }
+
+      function status(side, role, msg, kind = 'loading') {
+        const el = $('status-' + role + '-' + side);
+        el.textContent = msg;
+        el.className = 'loadStatus ' + kind;
+      }
+
+      function updateSummary(side) {
+        $('summary-' + side).textContent = state[side].head + ' ' + state[side].weights.head + ' · ' + state[side].body + ' ' + state[side].weights.body;
+      }
+
+      function updateFont(side, role) {
+        const family = state[side][role],
+          weight = state[side].weights[role],
+          key = side + '-' + role;
+        const count = (requests.get(key) || 0) + 1;
+        requests.set(key, count);
+        const preview = $('preview-' + side);
+        preview.style.setProperty(role === 'head' ? '--headFont' : '--bodyFont', '"' + family.replace(/"/g, '') + '", Arial, sans-serif');
+        preview.style.setProperty(role === 'head' ? '--headWeight' : '--bodyWeight', String(weight));
+        updateSummary(side);
+        status(side, role, family + ' · ' + weight + ': cargando…');
+        loadFace(family, weight).then(() => {
+            if (requests.get(key) === count) status(side, role, family + ' · ' + weight + ': fuente cargada ✓', 'good');
+          })
+          .catch(ex => {
+            if (requests.get(key) === count) status(side, role, family + ' · ' + weight + ': NO CARGADA — ' + ex.message, 'bad');
+          });
+      }
+
+      function setPicker(side, role, font) {
+        const id = role + '-' + side,
+          select = $(id);
+        state[side][role] = font;
+        // Si la fuente personalizada llega desde la otra columna, registrarla en la lista de destino.
+        if (![...select.options].some(opt => opt.value === font)) select.add(new Option(font, font), select.options.length - 1);
+        select.value = font;
+        $('custom-' + id).classList.remove('visible');
+        updateFont(side, role);
+        if (synced[role] === side) setPicker(side === 'a' ? 'b' : 'a', role, font);
+      }
+
+      function selectChanged(event) {
+        clearError();
+        const select = event.target,
+          {
+            side,
+            role
+          } = select.dataset,
+          id = role + '-' + side,
+          box = $('custom-' + id);
+        if (select.value === '__custom__') {
+          box.classList.add('visible');
+          $('customInput-' + id).focus();
+          return;
+        }
+        box.classList.remove('visible');
+        setPicker(side, role, select.value);
+      }
+
+      function customApply(key) {
+        clearError();
+        const [role, side] = key.split('-');
+        const value = $('customInput-' + key).value.trim().replace(/\s+/g, ' ');
+        if (!/^[\p{L}\p{N} .&'\-]{2,65}$/u.test(value)) {
+          showError('Introduce el nombre de una familia de Google Fonts (2–65 caracteres).');
+          return;
+        }
+        const select = $(key);
+        if (![...select.options].some(o => o.value === value)) select.add(new Option(value, value), select.options.length - 1);
+        select.value = value;
+        $('custom-' + key).classList.remove('visible');
+        setPicker(side, role, value);
+      }
+      for (const side of ['a', 'b'])
+        for (const role of ['head', 'body']) {
+          const select = $(role + '-' + side);
+          for (const name of fontNames) select.add(new Option(name, name));
+          select.add(new Option('Otra de Google Fonts…', '__custom__'));
+          select.addEventListener('change', selectChanged);
+          const key = role + '-' + side;
+          document.querySelector('[data-custom="' + key + '"]').addEventListener('click', () => customApply(key));
+          $('customInput-' + key).addEventListener('keydown', e => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              customApply(key);
+            }
+          });
+          const weightSelect = $('weight-' + role + '-' + side);
+          for (const weight of weights) {
+            const label = {
+              100: '100 · Thin',
+              200: '200 · Extra Light',
+              300: '300 · Light',
+              400: '400 · Regular',
+              500: '500 · Medium',
+              600: '600 · Semibold',
+              700: '700 · Bold',
+              800: '800 · Extra Bold',
+              900: '900 · Black'
+            } [weight];
+            weightSelect.add(new Option(label, String(weight)));
+          }
+          weightSelect.value = String(state[side].weights[role]);
+          weightSelect.addEventListener('change', e => {
+            state[side].weights[role] = Number(e.target.value);
+            updateFont(side, role);
+          });
+          setPicker(side, role, state[side][role]);
+        }
+      // La sincronización es bidireccional, mutuamente excluyente POR TIPO de texto.
+      // Solo se sincroniza la familia: los pesos de A y B permanecen independientes.
+      function refreshSync(role) {
+        for (const side of ['a', 'b']) {
+          const receives = synced[role] !== null && synced[role] !== side;
+          $(role + '-' + side).disabled = receives;
+          $('custom-' + role + '-' + side).querySelectorAll('input,button').forEach(el => el.disabled = receives);
+          $('sync-' + role + '-' + side).checked = synced[role] === side;
+        }
+      }
+      for (const role of ['head', 'body']) {
+        for (const side of ['a', 'b']) {
+          $('sync-' + role + '-' + side).addEventListener('change', e => {
+            synced[role] = e.target.checked ? side : null;
+            refreshSync(role);
+            if (synced[role] === side) setPicker(side === 'a' ? 'b' : 'a', role, state[side][role]);
+          });
+        }
+        refreshSync(role);
+      }
+  for (const [id, cssVariable, formatter] of [
+      ['bodySize', '--bodySize', v => v + 'px'],
+      ['headingSize', '--headingSize', v => v + 'px'],
+      ['lineHeight', '--lineHeight', v => String(Number(v).toFixed(2))],
+      ['sampleWidth', '--sampleWidth', v => v + 'px'],
+      ['letterSpacing', '--letterSpacing', v => v + 'px']
+    ]) {
+    const slider = $(id);
+    const valueInput = $(id + 'Out');
+    const min = Number(slider.min);
+    const max = Number(slider.max);
+    const decimals = (slider.step.split('.')[1] || '').length;
+    const parseValue = value => Number(String(value).trim().replace(',', '.'));
+    const displayValue = value => decimals ? Number(value).toFixed(decimals) : String(Number(value));
+    const applyValue = value => document.documentElement.style.setProperty(cssVariable, formatter(value));
+
+    slider.addEventListener('input', () => {
+      valueInput.value = displayValue(slider.value);
+      applyValue(slider.value);
+    });
+    valueInput.addEventListener('input', () => {
+      if (valueInput.value === '') return;
+      const value = parseValue(valueInput.value);
+      if (!Number.isFinite(value) || value < min || value > max) return;
+      slider.value = String(value);
+      applyValue(slider.value);
+    });
+    valueInput.addEventListener('change', () => {
+      const typedValue = parseValue(valueInput.value);
+      const fallback = parseValue(slider.value);
+      const clampedValue = Number.isFinite(typedValue) ? Math.min(max, Math.max(min, typedValue)) : fallback;
+      slider.value = String(clampedValue);
+      valueInput.value = displayValue(slider.value);
+      applyValue(slider.value);
+    });
+  }
+      for (const [id, field] of [
+          ['editHero', 'hero'],
+          ['editBrand', 'brand'],
+          ['editIntro', 'intro'],
+          ['editLong', 'long'],
+          ['editSecond', 'second'],
+          ['editLink', 'link']
+        ]) {
+        $(id).addEventListener('input', e => document.querySelectorAll('[data-text="' + field + '"]').forEach(el => el.textContent = e.target.value));
+      }
+  document.querySelectorAll('.preview').forEach(preview => preview.addEventListener('click', event => {
+    if (event.target.closest('a[data-demo-link]')) event.preventDefault();
+  }));
+  const appShell = document.querySelector('.shell');
+  const sidebarToggle = $('sidebarToggle');
+  const controlSidebar = $('controlSidebar');
+  const sidebarContent = $('sidebarContent');
+  const sidebarBrand = controlSidebar.querySelector('.brandBar');
+  const sidebarBackdrop = $('sidebarBackdrop');
+  const mobileSidebar = window.matchMedia('(max-width: 820px)');
+
+  function setSidebarCollapsed(collapsed) {
+    appShell.classList.toggle('sidebar-collapsed', collapsed);
+    sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
+    sidebarToggle.setAttribute('aria-label', collapsed ? 'Mostrar opciones' : 'Ocultar opciones');
+    sidebarToggle.title = collapsed ? 'Mostrar opciones' : 'Ocultar opciones';
+    sidebarContent.setAttribute('aria-hidden', String(collapsed));
+    sidebarBrand.setAttribute('aria-hidden', String(collapsed));
+    sidebarBackdrop.setAttribute('aria-hidden', String(collapsed || !mobileSidebar.matches));
+    document.body.classList.toggle('sidebar-open-mobile', mobileSidebar.matches && !collapsed);
+  }
+
+  sidebarToggle.addEventListener('click', () => {
+    setSidebarCollapsed(!appShell.classList.contains('sidebar-collapsed'));
+  });
+  sidebarBackdrop.addEventListener('click', () => setSidebarCollapsed(true));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileSidebar.matches && !appShell.classList.contains('sidebar-collapsed')) setSidebarCollapsed(true);
+  });
+  const syncSidebarToViewport = event => setSidebarCollapsed(event.matches);
+  if (mobileSidebar.addEventListener) mobileSidebar.addEventListener('change', syncSidebarToViewport);
+  else mobileSidebar.addListener(syncSidebarToViewport);
+  setSidebarCollapsed(mobileSidebar.matches);
+  const help = $('helpDialog');
+
+      function lockPage(locked) {
+        document.documentElement.classList.toggle('help-open', locked);
+        document.body.classList.toggle('help-open', locked);
+      }
+
+      function showHelp() {
+        if (help.showModal && !help.open) {
+          help.showModal();
+        } else if (!help.open) {
+          help.setAttribute('open', '');
+        }
+
+        lockPage(true);
+        help.focus({
+          preventScroll: true
+        });
+      }
+
+      function closeHelp() {
+        if (help.open) {
+          if (typeof help.close === 'function') help.close();
+          else help.removeAttribute('open');
+        }
+        lockPage(false);
+      }
+      $('openHelp').addEventListener('click', showHelp);
+      $('closeHelp').addEventListener('click', closeHelp);
+      $('gotIt').addEventListener('click', closeHelp);
+      help.addEventListener('click', e => {
+        if (e.target === help) closeHelp();
+      });
+      help.addEventListener('close', () => lockPage(false));
+      help.addEventListener('cancel', () => lockPage(false));
+      window.requestAnimationFrame(showHelp);
+    })();
+  </script>
+</body>
+
+</html>
