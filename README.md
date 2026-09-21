@@ -52,11 +52,11 @@ Font Lab/
 ├── index.html
 ├── index.min.html
 ├── LICENSE
-├── LICENSE.html
+├── cpal-1.0.html
 └── README.md
 ```
 
-`index.html` es la versión de trabajo (marcado, estilos y JavaScript). `index.min.html` es la misma aplicación, compactada para publicar. `LICENSE` contiene el texto completo de CPAL-1.0 con los anexos A y B rellenados. `LICENSE.html` es la misma licencia para leerla en el navegador. `assets/` incluye el logotipo de atribución (marca Kyodai Agency).
+`index.html` es la versión de trabajo (marcado, estilos y JavaScript). `index.min.html` es la misma aplicación, compactada para publicar. `LICENSE` contiene el texto completo de CPAL-1.0 con los anexos A y B rellenados. `cpal-1.0.html` es la misma licencia para leerla en el navegador. `assets/` incluye el logotipo de atribución (marca Kyodai Agency).
 
 ## Tecnologías
 
