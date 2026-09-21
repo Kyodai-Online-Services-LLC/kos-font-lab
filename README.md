@@ -50,7 +50,6 @@ Font Lab/
 ├── assets/
 │   └── logo-kyodai-agency-white.png
 ├── index.html
-├── index.min.html
 ├── LICENSE
 ├── cpal-1.0.html
 └── README.md
