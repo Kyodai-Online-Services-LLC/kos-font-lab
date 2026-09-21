@@ -20,9 +20,11 @@ Comparador tipográfico A/B para evaluar familias y pesos de Google Fonts bajo l
 
 ## Uso
 
+La versión publicada está en [https://kyodaiagency.com/fontlab](https://kyodaiagency.com/fontlab).
+
 La aplicación está contenida completamente en `index.html` y no necesita instalación ni proceso de compilación.
 
-Puede abrirse directamente en un navegador moderno o servirse localmente desde el directorio superior:
+También puede abrirse localmente en un navegador moderno o servirse desde el directorio superior:
 
 ```bash
 python3 -m http.server 8000 --directory "Font Lab"
